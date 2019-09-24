@@ -12,13 +12,16 @@ app.get('/', (req, res) => res.send('Hello World!'));
 app.post('/sendemail', (req, res) => {
     sgMail.setApiKey('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');
     const msg = {
-        to: req.body.to,
+        to: 'support@zacharyshorts.com',
         from: req.body.from,
         subject: req.body.subject,
-        text: req.body.message,
+        text: req.body.name + " says: " + req.body.message,
     };
-    sgMail.send(msg).then().catch();
-    res.sendStatus(200);
+    sgMail.send(msg).then(() => {
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.log('error', error);
+    });
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

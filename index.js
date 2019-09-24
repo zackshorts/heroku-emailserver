@@ -1,9 +1,12 @@
+/*
+* Sends email to support@zachary.shorts.com from the contact form on zacharyshorts.com
+* */
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const sgMail = require('@sendgrid/mail');
 const app = express();
 const port = process.env.PORT || 3000;
-
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies

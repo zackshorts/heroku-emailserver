@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.get('/', (req, res) => res.send('Hello World!'));
 app.post('/sendemail', (req, res) => {
-    sgMail.setApiKey('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');
+    sgMail.setApiKey("insert api key");
     const msg = {
         to: 'support@zacharyshorts.com',
         from: req.body.from,

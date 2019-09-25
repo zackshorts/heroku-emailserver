@@ -20,7 +20,7 @@ app.post('/sendemail', (req, res) => {
         subject: req.body.subject,
         text: req.body.name + " : " + req.body.message,
     };
-    sgMail.send(msg).then(r=>console.log(r)).then(err=> console.log(err));
+    sgMail.send(msg).then(r=>console.log(r)).catch(err=> console.log(err));
     res.sendStatus(200);
 });
 

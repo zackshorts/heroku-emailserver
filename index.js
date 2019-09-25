@@ -7,9 +7,11 @@ const bodyParser = require('body-parser');
 const sgMail = require('@sendgrid/mail');
 const app = express();
 const port = process.env.PORT || 3000;
+var cors = require('cors');
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.use(cors);
 
 app.get('/', (req, res) => res.send('Heroku app is running!'));
 app.post('/sendemail', (req, res) => {

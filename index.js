@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-app.get('/', (req, res) => res.send('Heroku app is up and running!'));
+app.get('/', (req, res) => res.send('Heroku app is running!'));
 app.post('/sendemail', (req, res) => {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {

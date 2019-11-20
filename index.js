@@ -31,4 +31,16 @@ app.post('/sendemail', (req, res) => {
     res.sendStatus(200);
 });
 
+app.post('/sendsantaemail', (req, res) => {
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    const msg = {
+        to: 'shorts23@gmail.com',
+        from: 'santaclaus@gmail.com',
+        subject: 'Santa has got a brand new bag',
+        text: 'you will be giving a gift to blank',
+    };
+    sgMail.send(msg).then().catch();
+    res.sendStatus(200);
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

@@ -31,7 +31,7 @@ app.post('/sendemail', (req, res) => {
     res.sendStatus(200);
 });
 
-app.post('/sendsantaemail', (req, res) => {
+app.get('/sendsantaemail', (req, res) => {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
         to: 'shorts23@gmail.com',

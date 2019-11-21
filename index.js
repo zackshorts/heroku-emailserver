@@ -31,13 +31,13 @@ app.post('/sendemail', (req, res) => {
     res.sendStatus(200);
 });
 
-app.get('/sendsantaemail', (req, res) => {
+app.post('/sendsantaemail', (req, res) => {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
-        to: 'shorts23@gmail.com',
+        to: req.body.to,
         from: 'santaclaus@gmail.com',
         subject: 'Santa has got a brand new bag',
-        text: 'you will be giving a gift to blank',
+        text: 'you will be giving a gift to ' + req.body.name,
     };
     sgMail.send(msg).then().catch();
     res.sendStatus(200);

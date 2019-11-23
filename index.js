@@ -36,8 +36,8 @@ app.post('/sendsantaemail', (req, res) => {
     const msg = {
         to: req.body.to,
         from: 'santaclaus@gmail.com',
-        subject: 'Santa has got a brand new bag',
-        text: 'you will be giving a gift to ' + req.body.name,
+        subject: 'Code word: Santa\'s got a brand new bag',
+        text: req.body.message,
     };
     sgMail.send(msg).then().catch();
     res.sendStatus(200);

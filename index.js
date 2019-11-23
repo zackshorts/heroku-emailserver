@@ -20,6 +20,7 @@ app.use(function(req, res, next) {
 
 app.get('/', (req, res) => res.send('Heroku app is running!'));
 app.post('/sendemail', (req, res) => {
+    console.log(req.body.name);
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
         to: 'support@zacharyshorts.com',
@@ -33,6 +34,8 @@ app.post('/sendemail', (req, res) => {
 
 app.post('/sendsantaemail', (req, res) => {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    console.log(req.body.to);
+    console.log(req.body.message);
     const msg = {
         to: req.body.to,
         from: 'santaclaus@gmail.com',

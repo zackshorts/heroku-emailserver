@@ -41,8 +41,29 @@ app.post('/sendsantaemail', (req, res) => {
         subject: 'Code word: Santa\'s got a brand new bag',
         text: req.body.message,
     };
-    sgMail.send(msg).then().catch();
-    res.sendStatus(200);
+    sgMail
+          .send(msg)
+          .then(() => {
+                res.sendStatus(200);
+            }, error => {
+            console.error(error);
+
+            if (error.response) {
+              console.error(error.response.body)
+            }
+          });
+        //ES8
+        (async () => {
+          try {
+            await sgMail.send(msg);
+          } catch (error) {
+            console.error(error);
+
+            if (error.response) {
+              console.error(error.response.body)
+            }
+          }
+        })();
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

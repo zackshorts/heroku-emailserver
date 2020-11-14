@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", '*');
+    res.header("Access-Control-Allow-Credentials", true);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type, application/x-www-form-urlencoded');
     next();
@@ -41,29 +42,8 @@ app.post('/sendsantaemail', (req, res) => {
         subject: 'Code word: Santa\'s got a brand new bag',
         text: req.body.message,
     };
-    sgMail
-          .send(msg)
-          .then(() => {
-                res.sendStatus(200);
-            }, error => {
-            console.error(error);
-
-            if (error.response) {
-              console.error(error.response.body)
-            }
-          });
-        //ES8
-        (async () => {
-          try {
-            await sgMail.send(msg);
-          } catch (error) {
-            console.error(error);
-
-            if (error.response) {
-              console.error(error.response.body)
-            }
-          }
-        })();
+    sgMail.send(msg).then().catch();
+    res.sendStatus(200);
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

@@ -40,7 +40,7 @@ app.post('/sendsantaemail', (req, res) => {
         text: req.body.message,
     };
     sgMail.send(msg).then(res.sendStatus(200)).catch(err => {
-        console.log(err));
+        console.log(err);
         res.send(400);
 });
 

@@ -39,7 +39,7 @@ app.post('/sendsantaemail', (req, res) => {
         subject: 'Code word: Santa\'s got a brand new bag',
         text: req.body.message,
     };
-    sgMail.send(msg).then().catch();
+    sgMail.send(msg).then().catch(err => console.log(err));
     res.sendStatus(200);
 });
 

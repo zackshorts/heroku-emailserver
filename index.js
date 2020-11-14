@@ -39,8 +39,9 @@ app.post('/sendsantaemail', (req, res) => {
         subject: 'Code word: Santa\'s got a brand new bag',
         text: req.body.message,
     };
-    sgMail.send(msg).then().catch(err => console.log(err));
-    res.sendStatus(200);
+    sgMail.send(msg).then(res.sendStatus(200)).catch(err => {
+        console.log(err));
+        res.send(400);
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

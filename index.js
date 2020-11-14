@@ -42,6 +42,7 @@ app.post('/sendsantaemail', (req, res) => {
     sgMail.send(msg).then(res.sendStatus(200)).catch(err => {
         console.log(err);
         res.send(400);
+    });
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
